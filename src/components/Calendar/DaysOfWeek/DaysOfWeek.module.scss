@@ -1,0 +1,13 @@
+.daysOfWeek {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  margin-bottom: 5px;
+}
+
+.dayOfWeek {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

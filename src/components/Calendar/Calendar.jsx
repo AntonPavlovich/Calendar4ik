@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Selectedday from "./SelectedDay/SelectedDay";
-import styles from './Calendar.module.scss'
-import Month from "./Month/Month";
-import getWeeksInMonth from "date-fns/getWeeksInMonth";
-import getMonth from "date-fns/getMonth";
-
+import Calendarbody from "./CalendarBody/CalendarBody";
+import styles from "./Calendar.module.scss";
+import selectedDayContext from './../../contexts/context'
 
 const Calendar = () => {
   const currentDate = Date.now();
-  const weeksAmount = getWeeksInMonth(getMonth(currentDate))
 
-  return <div className={styles.calendar}>
-    <Selectedday currentDate={currentDate}/>
-    <Month weeksAmount={weeksAmount}/>
-  </div>;
+  const [selectedDay, setSelectedDay] = useState(currentDate);
+
+
+  return (
+    <div className={styles.calendar}>
+      <selectedDayContext.Provider value={[setSelectedDay,currentDate]}>
+        <Selectedday selectedDay={selectedDay} />
+        <Calendarbody currentDate={currentDate} />
+      </selectedDayContext.Provider>
+    </div>
+  );
 };
 
 export default Calendar;
