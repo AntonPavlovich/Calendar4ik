@@ -1,16 +1,21 @@
 import React, { useContext } from "react";
-import { format, isSameMonth } from "date-fns";
+import { format, isSameMonth, isSameDay } from "date-fns";
 import selectedDayContext from "../../../contexts/context";
+
+import cx from 'classnames'
 import styles from "./Day.module.scss";
 
 const Day = (props) => {
   const { day } = props;
+  const [setSelectedDay, currentDate,selectedDay] = useContext(selectedDayContext);
 
-  const [setSelectedDay, currentDate] = useContext(selectedDayContext);
+  const classnames = cx(styles.day, {
+    [styles.selected] : isSameDay(day, selectedDay)
+  })
 
   const someOfThisDay = isSameMonth(day, currentDate) ? (
     <div
-      className={styles.day}
+      className={classnames}
       onClick={() => {
         setSelectedDay(day);
       }}
@@ -18,7 +23,7 @@ const Day = (props) => {
       {format(day, "d")}
     </div>
   ) : (
-    <div className={styles.day}></div>
+    <div className={classnames}></div>
   );
 
   return <>{someOfThisDay}</>

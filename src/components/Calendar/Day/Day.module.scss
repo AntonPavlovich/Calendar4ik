@@ -3,4 +3,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  cursor:pointer;
+}
+
+.selected {
+  background-color: rgb(172, 169, 169);
 }

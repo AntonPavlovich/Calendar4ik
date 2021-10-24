@@ -14,7 +14,9 @@ const DaysOfWeek = (props) => {
     );
   });
 
-  return <div className={styles.daysOfWeek}>{days}</div>;
+  return <>
+  <div className={styles.monthAndYear}>{`${format(currentDate, 'MMMM')} ${format(currentDate,'Y')}`}</div>
+  <div className={styles.daysOfWeek}>{days}</div></>;
 };
 
 export default DaysOfWeek;
